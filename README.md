@@ -61,8 +61,6 @@ Movie-Ticket-Booking-System
 - Seat selection interface  
 - Booking confirmation screen (UI-based)  
 
-## 🌐 Live Demo
-👉 https://24A31A05DV.github.io/Create-a-website-for-movie-ticket-booking-system-for-a-multiplex/
 
 ## 🔮 Future Improvements
 - Backend integration (Node.js / Java / PHP)  
