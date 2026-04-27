@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Movies - CineLux</title>
+
+<style>
+
+/* ===== BODY ===== */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1600&q=80') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+}
+
+/* ===== NAVBAR ===== */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background: rgba(0,0,0,0.85);
+}
+
+header h1 {
+    color: gold;
+    margin: 0;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 500;
+}
+
+nav a:hover {
+    color: gold;
+}
+
+/* ===== MOVIE CONTAINER ===== */
+.movie-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);  /* 3 in one row */
+    gap: 30px;
+    padding: 50px 60px;
+}
+
+/* ===== MOVIE CARD ===== */
+.movie-card {
+    width: 100%;
+    background: rgba(0,0,0,0.9);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+    transition: 0.3s ease;
+}
+
+.movie-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(255,215,0,0.4);
+}
+
+/* ===== MOVIE IMAGE ===== */
+.movie-card img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+}
+
+/* ===== MOVIE INFO ===== */
+.movie-info {
+    padding: 15px;
+    background: linear-gradient(to top, #111, #222);
+}
+
+.movie-info h3 {
+    margin: 5px 0;
+    color: gold;
+}
+
+.movie-info p {
+    margin: 4px 0;
+    font-size: 14px;
+    color: #ddd;
+}
+
+/* ===== BUTTON ===== */
+.movie-card button {
+    width: 90%;
+    margin: 15px;
+    padding: 10px;
+    background: #c0392b;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.movie-card button:hover {
+    background: gold;
+    color: black;
+}
+
+@media (max-width: 768px) {
+    .movie-card {
+        width: 90%;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<header>
+    <h1>CineLux 🎬</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="movies.html">Movies</a>
+        <a href="seats.html">Seats</a>
+    </nav>
+</header>
+
+<section class="movie-container">
+
+<!-- Movie 1 -->
+<div class="movie-card">
+    <img src="https://upload.wikimedia.org/wikipedia/en/0/0d/Avengers_Endgame_poster.jpg" alt="Avengers Endgame">
+    <div class="movie-info">
+        <h3>Avengers: Endgame</h3>
+        <p>Genre: Action / Sci-Fi</p>
+        <p>Rating: 8.9 ⭐</p>
+        <p>Theatres: PVR Nexus, Cinepolis Luxe, Miraj Elite</p>
+        <p>Timings: 10:00 AM | 1:30 PM | 5:00 PM</p>
+    </div>
+    <button onclick="selectMovie('Avengers: Endgame')">Book Now</button>
+</div>
+
+<!-- Movie 2 -->
+<div class="movie-card">
+    <img src="https://m.media-amazon.com/images/I/91kFYg4fX3L._AC_SL1500_.jpg" alt="Interstellar">
+    <div class="movie-info">
+        <h3>Interstellar</h3>
+        <p>Genre: Sci-Fi / Adventure</p>
+        <p>Rating: 8.6 ⭐</p>
+        <p>Theatres: Cinepolis Luxe, AMB Signature, PVR Nexus</p>
+        <p>Timings: 11:00 AM | 2:30 PM | 6:00 PM</p>
+    </div>
+    <button onclick="selectMovie('Interstellar')">Book Now</button>
+</div>
+
+<!-- Movie 3 -->
+<div class="movie-card">
+    <img src="https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg" alt="The Dark Knight">
+    <div class="movie-info">
+        <h3>The Dark Knight</h3>
+        <p>Genre: Action / Thriller</p>
+        <p>Rating: 9.0 ⭐</p>
+        <p>Theatres: Miraj Elite, PVR Nexus, Cinepolis Luxe</p>
+        <p>Timings: 9:45 AM | 12:45 PM | 4:15 PM</p>
+    </div>
+    <button onclick="selectMovie('The Dark Knight')">Book Now</button>
+</div>
+
+<!-- Movie 4 -->
+<div class="movie-card">
+    <img src="https://image.tmdb.org/t/p/w500/9gk7adHYeDvHkCSEqAvQNLV5Uge.jpg" alt="Inception">
+    <div class="movie-info">
+        <h3>Inception</h3>
+        <p>Genre: Sci-Fi / Thriller</p>
+        <p>Rating: 8.8 ⭐</p>
+        <p>Theatres: AMB Signature, Cinepolis Luxe, Miraj Elite</p>
+        <p>Timings: 12:00 PM | 3:30 PM | 7:00 PM</p>
+    </div>
+    <button onclick="selectMovie('Inception')">Book Now</button>
+</div>
+
+<!-- Movie 5 -->
+<div class="movie-card">
+    <img src="https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg" alt="Joker">
+    <div class="movie-info">
+        <h3>Joker</h3>
+        <p>Genre: Drama / Thriller</p>
+        <p>Rating: 8.4 ⭐</p>
+        <p>Theatres: PVR Nexus, AMB Signature, Cinepolis Luxe</p>
+        <p>Timings: 10:30 AM | 1:45 PM | 5:15 PM</p>
+    </div>
+    <button onclick="selectMovie('Joker')">Book Now</button>
+</div>
+
+<!-- Movie 6 -->
+<div class="movie-card">
+    <img src="https://image.tmdb.org/t/p/w500/9Gtg2DzBhmYamXBS1hKAhiwbBKS.jpg" alt="Doctor Strange">
+    <div class="movie-info">
+        <h3>Doctor Strange</h3>
+        <p>Genre: Fantasy / Action</p>
+        <p>Rating: 8.1 ⭐</p>
+        <p>Theatres: Miraj Elite, Cinepolis Luxe, AMB Signature</p>
+        <p>Timings: 11:15 AM | 2:45 PM | 6:30 PM</p>
+    </div>
+    <button onclick="selectMovie('Doctor Strange')">Book Now</button>
+</div>
+
+<script>
+function selectMovie(movie) {
+    localStorage.setItem("movieName", movie);
+    window.location.href = "seats.html";
+}
+</script>
+
+</body>
+</html>

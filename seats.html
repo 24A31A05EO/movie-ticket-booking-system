@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CineLux Seats</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1600&q=80') no-repeat center center fixed;
+background-size:cover;
+color:white;
+}
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 40px;
+background:rgba(0,0,0,0.9);
+}
+
+header h1{
+color:gold;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+}
+
+nav a:hover{
+color:gold;
+}
+
+.movie-title{
+text-align:center;
+font-size:32px;
+color:gold;
+margin-top:20px;
+}
+
+.container{
+display:flex;
+justify-content:center;
+gap:50px;
+padding:40px;
+flex-wrap:wrap;
+}
+
+.glass{
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(10px);
+padding:30px;
+border-radius:15px;
+box-shadow:0 10px 30px rgba(0,0,0,0.7);
+}
+
+.screen{
+background:white;
+color:black;
+text-align:center;
+padding:10px;
+margin-bottom:30px;
+border-radius:10px;
+font-weight:bold;
+}
+
+.seats{
+display:grid;
+grid-template-columns:repeat(8,45px);
+gap:10px;
+justify-content:center;
+margin-top:20px;
+}
+
+.seat{
+width:45px;
+height:45px;
+border-radius:5px;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:13px;
+}
+
+.available{
+background:#27ae60;
+}
+
+.selected{
+background:#f1c40f;
+}
+
+.booked{
+background:#c0392b;
+cursor:not-allowed;
+}
+
+.legend{
+display:flex;
+justify-content:center;
+gap:20px;
+margin-top:20px;
+}
+
+.box{
+width:15px;
+height:15px;
+border-radius:3px;
+}
+
+.payment h2{
+color:gold;
+text-align:center;
+}
+
+.payment input{
+width:100%;
+padding:10px;
+margin:8px 0;
+border:none;
+border-radius:5px;
+}
+
+.pay-btn{
+width:100%;
+padding:12px;
+background:gold;
+border:none;
+border-radius:6px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.pay-btn:hover{
+background:#f39c12;
+}
+
+.total{
+text-align:center;
+margin:10px 0;
+font-size:18px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>CineLux 🎬</h1>
+<nav>
+<a href="index.html">Home</a>
+<a href="movies.html">Movies</a>
+</nav>
+</header>
+
+<div class="movie-title" id="movieTitle"></div>
+
+<div class="container">
+
+<div class="glass">
+
+<div class="screen">SCREEN</div>
+
+<div class="seats" id="seatGrid"></div>
+
+<div class="legend">
+<div><div class="box available"></div> Available</div>
+<div><div class="box selected"></div> Selected</div>
+<div><div class="box booked"></div> Booked</div>
+</div>
+
+</div>
+
+<div class="glass payment">
+
+<h2>Payment</h2>
+
+<div class="total">Seats Selected: <span id="count">0</span></div>
+<div class="total">Total Price: ₹<span id="price">0</span></div>
+
+<input type="text" placeholder="Card Holder Name">
+<input type="text" placeholder="Card Number">
+<input type="text" placeholder="Expiry Date">
+<input type="text" placeholder="CVV">
+
+<button class="pay-btn" onclick="pay()">Pay Now</button>
+
+</div>
+
+</div>
+
+<script>
+
+let movie = localStorage.getItem("movieName");
+document.getElementById("movieTitle").innerText="Booking for: "+movie;
+
+let grid=document.getElementById("seatGrid");
+
+let selected=0;
+let seatPrice=150;
+
+let rows = ["A","B","C","D","E","F"];
+
+for(let r = 0; r < rows.length; r++){
+
+    for(let s = 1; s <= 8; s++){
+
+        let seat = document.createElement("div");
+
+        seat.classList.add("seat","available");
+
+        seat.innerText = rows[r] + s;
+
+        if(Math.random() < 0.2){
+            seat.classList.remove("available");
+            seat.classList.add("booked");
+        }
+
+        seat.onclick = function(){
+
+            if(seat.classList.contains("booked")) return;
+
+            if(seat.classList.contains("selected")){
+                seat.classList.remove("selected");
+                seat.classList.add("available");
+                selected--;
+            }
+            else{
+                seat.classList.remove("available");
+                seat.classList.add("selected");
+                selected++;
+            }
+
+            document.getElementById("count").innerText = selected;
+            document.getElementById("price").innerText = selected * seatPrice;
+
+        };
+
+        grid.appendChild(seat);
+
+    }
+
+}
+function pay(){
+
+if(selected == 0){
+alert("Please select seats");
+return;
+}
+
+let confirmPayment = confirm("Do you want to confirm payment?");
+
+if(confirmPayment){
+alert("Payment Successful 🎉\nEnjoy watching " + movie);
+}
+
+}
+
+</script>
+
+</body>
+</html>
